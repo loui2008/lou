@@ -1,0 +1,10 @@
+#!/bin/bash
+##maker:lou
+##version:1.0
+IP=""
+PORT=""
+USER=""
+PASSWD=""
+REMOTE_DIR=""
+LOCAL_DIR=""
+DEST_FILE=""
