@@ -11,16 +11,18 @@ for station in `seq 50001 50006`
 do
 	for i in `seq 1 4`
 	do
-	ftp  -i -n << EOF
+	if [ -d /record/record_A$i/$YEAR/$DATE/$station ] ; then
+	echo /record/record_A$i/$YEAR/$DATE/$station
+		ftp  -i -n<<EOF
 		open $IP $PORT
 		user $USER $PASSWORD
 		bin
-		mkdir /record/record_A$i/$YEAR/$DATE/%station
-		cd /record/record_A$i/$YEAR/$DATE/%station
-		lcd /record/record_A$i/$YEAR/$DATE/%station
-		mput *
+		mkdir /record/record_A$i/$YEAR/$DATE/$station
+		lcd /record/record_A$i/$YEAR/$DATE/$station
+		mput /record/record_A$i/$YEAR/$DATE/$station/*
 		close
 		quit
-		EOF
+EOF
+	fi
 	done
 done
