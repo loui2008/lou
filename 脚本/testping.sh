@@ -19,8 +19,8 @@ while :; do
 		[0;31mdown\033[0m"
 		let lost=$lost+1
 	else
-		echo -e "$lost/$index - `date +'%Y/%m/%d %H:%M:%S'` - host $host is \033[0;
-		32mok\033[0m - `echo $result | cut -d ':' -f 2`"
+		echo -e "$lost/$index - `date +'%Y/%m/%d %H:%M:%S'` - host $host is \033
+		[0;32mok\033[0m - `echo $result | cut -d ':' -f 2`"
 		sleep $wait # avoid ping rain
 	fi
 	let index=$index+1
