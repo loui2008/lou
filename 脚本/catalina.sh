@@ -193,7 +193,7 @@ fi
 CLASSPATH="$CLASSPATH""$CATALINA_HOME"/bin/bootstrap.jar
 
 if [ -z "$CATALINA_OUT" ] ; then
-  CATALINA_OUT="$CATALINA_BASE"/logs/catalina.out
+  CATALINA_OUT="$CATALINA_BASE"/logs/%Y-%m-%d.catalina.out
 fi
 
 if [ -z "$CATALINA_TMPDIR" ] ; then
@@ -395,7 +395,7 @@ elif [ "$1" = "start" ] ; then
   fi
 
   shift
-  touch "$CATALINA_OUT"
+  #touch "$CATALINA_OUT"
   if [ "$1" = "-security" ] ; then
     if [ $have_tty -eq 1 ]; then
       echo "Using Security Manager"
@@ -418,7 +418,8 @@ elif [ "$1" = "start" ] ; then
       -Dcatalina.home="\"$CATALINA_HOME\"" \
       -Djava.io.tmpdir="\"$CATALINA_TMPDIR\"" \
       org.apache.catalina.startup.Bootstrap "$@" start \
-      >> "$CATALINA_OUT" 2>&1 "&"
+      >> "$CATALINA_OUT" 2>&1 \ 
+	  | /usr/sbin/cronolog "$CATALINA_OUT" >> /dev/null&
 
   fi
 
