@@ -1,0 +1,4 @@
+add vrt xxx
+goto step xx  if ani in table xxx
+route-to number 23076 with cov n if unconditionally
+stop
